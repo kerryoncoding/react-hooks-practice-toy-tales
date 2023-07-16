@@ -1,10 +1,14 @@
 import React from "react";
 
-function ToyCard({id, name, image, likes, handleItemToRemove}) {
+function ToyCard({id, name, image, likes, handleItemToRemove, handleLikeUpdate}) {
 
   function handleDelete(){
     console.log(id)
     handleItemToRemove(id)
+  }
+
+  function handleLike(){
+    handleLikeUpdate(id, likes)
   }
   
   return (
@@ -16,7 +20,7 @@ function ToyCard({id, name, image, likes, handleItemToRemove}) {
         className="toy-avatar"
       />
       <p>{likes} Likes </p>
-      <button className="like-btn">Like ♥</button>
+      <button className="like-btn" onClick={handleLike}>Like ♥</button>
       <button className="del-btn" onClick={handleDelete}>Donate to GoodWill</button>
     </div>
   );

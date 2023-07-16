@@ -1,14 +1,9 @@
 import React from "react";
 import ToyCard from "./ToyCard";
 
-function ToyContainer({toyArr, handleItemToRemove}) {
+function ToyContainer({toyArr, handleItemToRemove, handleLikeUpdate}) {
 
   console.log(toyArr)
-
-  // function handleDelete(){
-  //   console.log("here", item.id)
-
-  // }
 
   let showCollection = toyArr.map((item)=> {
     return <ToyCard
@@ -18,6 +13,7 @@ function ToyContainer({toyArr, handleItemToRemove}) {
     image= {item.image}
     likes= {item.likes}
     handleItemToRemove={handleItemToRemove}
+    handleLikeUpdate={handleLikeUpdate}
     />
   })
 
