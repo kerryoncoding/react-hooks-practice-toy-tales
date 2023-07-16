@@ -35,6 +35,23 @@ function App() {
     .then(data=> setToyArr([...toyArr, toyInfo]))
   }
 
+  function handleItemToRemove(item){
+    console.log("clicked: ", item)
+    fetch(`${URL}/${item}`, {
+      method: "DELETE",
+    })
+    .then(res=>res.json())
+    .then(data=> {
+      let updatedList = toyArr.filter((card)=> card.id != item)
+    setToyArr(updatedList)      
+    })
+  }
+
+  function removeItemFromList(itemId){
+    let updatedList = toyArr.filter((item)=> item.id != itemId)
+    setToyArr(updatedList)
+  }
+
   return (
     <>
       <Header />
@@ -42,7 +59,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer toyArr={toyArr}/>
+      <ToyContainer toyArr={toyArr} handleItemToRemove={handleItemToRemove} />
     </>
   );
 }

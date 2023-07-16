@@ -1,6 +1,12 @@
 import React from "react";
 
-function ToyCard({id, name, image, likes}) {
+function ToyCard({id, name, image, likes, handleItemToRemove}) {
+
+  function handleDelete(){
+    console.log(id)
+    handleItemToRemove(id)
+  }
+  
   return (
     <div className="card">
       <h2>{name}</h2>
@@ -11,7 +17,7 @@ function ToyCard({id, name, image, likes}) {
       />
       <p>{likes} Likes </p>
       <button className="like-btn">Like ♥</button>
-      <button className="del-btn">Donate to GoodWill</button>
+      <button className="del-btn" onClick={handleDelete}>Donate to GoodWill</button>
     </div>
   );
 }
