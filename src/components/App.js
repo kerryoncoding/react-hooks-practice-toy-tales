@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Header from "./Header";
 import ToyForm from "./ToyForm";
 import ToyContainer from "./ToyContainer";
 
+const URL  = "http://localhost:3001/toys"
+
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [toyArr, setToyArr] = useState([])
+
+  useEffect(()=> {
+    fetch(URL)
+    .then(res=> res.json())
+    .then(data => setToyArr(data))
+  },[])
+
+
 
   function handleClick() {
     setShowForm((showForm) => !showForm);
+
   }
 
   return (
@@ -18,7 +30,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer />
+      <ToyContainer toyArr={toyArr}/>
     </>
   );
 }
