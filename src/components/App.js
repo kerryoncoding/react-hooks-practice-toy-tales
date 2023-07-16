@@ -20,13 +20,25 @@ function App() {
 
   function handleClick() {
     setShowForm((showForm) => !showForm);
+  }
 
+  function handleNewToy(toyInfo){
+    console.log("new toy here", toyInfo)
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(toyInfo)
+    })
+    .then(res=> res.json())
+    .then(data=> setToyArr([...toyArr, toyInfo]))
   }
 
   return (
     <>
       <Header />
-      {showForm ? <ToyForm /> : null}
+      {showForm ? <ToyForm handleNewToy={handleNewToy} /> : null}
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
